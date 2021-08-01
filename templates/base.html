@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MiloCam</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="{{ url_for('static', filename='lib/jquery/jquery-3.4.1.min.js') }}"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
+
+	<!-- Bootstrap Popper -->
+	<script type="text/javascript" src="{{ url_for('static', filename='lib/bootstrap/js/popper.min.js') }}"></script>
+
+	<!-- Bootstrap JS -->
+	<script type="text/javascript" src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.min.js') }}"></script>
+
+	<!-- Font Awesome 5 -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/fontawesome/css/all.css') }}">
+
+	<!-- Socket.IO -->
+	<script type="text/javascript" src="{{ url_for('static', filename='lib/socket.io/socket.io.min.js') }}"></script>
+
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script> -->
+    
+	<body>
+	{% include 'header.html' %}
+	{% block content %}
+	{% endblock %}
+</body>
+</html>
