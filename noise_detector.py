@@ -84,7 +84,7 @@ class Noise_Detector(threading.Thread):
 		Util.log(self.name, "Determining threshold...")
 
 		res = []
-		for x in range(500):
+		for x in range(50):
 			block = self.stream.read(self.CHUNK_SIZE)
 			rms = self.get_rms(block)
 			res.append(rms)

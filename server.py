@@ -82,10 +82,13 @@ class Stream_Thread(threading.Thread):
 		super(Stream_Thread, self).__init__()
 
 	def run(self):
+		prev = -1
 		while True:
 			# if nb.notified:
 			sound = nd.get_chunk()
-			socketio.emit('sound', {'chunk': sound})
+			if prev != sound:
+				socketio.emit('sound', {'chunk': sound})
+			prev = sound
 			time.sleep(0.05)
 
 t = Stream_Thread()
