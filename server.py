@@ -85,8 +85,9 @@ class Stream_Thread(threading.Thread):
 		while True:
 			# if nb.notified:
 			sound = nd.get_chunk()
+			print(sound)
 			socketio.emit('sound', {'chunk': sound})
-			time.sleep(0.04)
+			time.sleep(0.03)
 
 t = Stream_Thread()
 t.start()
