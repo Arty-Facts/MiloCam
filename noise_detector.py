@@ -150,7 +150,7 @@ class Noise_Detector(threading.Thread):
 				# Add noise level of this chunk to the sliding-window
 				rms = self.get_rms(self.chunk)
 				observer.append(rms)
-
+				print(observer)
 				if self.detected(sum([x > self.threshold for x in observer]) > 0):
 					# There's at least one chunk in the sliding-window above threshold
 					if not self.recording():
