@@ -24,7 +24,10 @@ class Lock_Manager:
 
 	def get_lock_time(self):
 		for filename in os.listdir(self.locks):
-			with open(self.locks + "/" + filename) as f:
-				return f.read()
+			try:
+				with open(self.locks + "/" + filename) as f:
+					return f.read()
+			except:
+				continue
 
 		return None
