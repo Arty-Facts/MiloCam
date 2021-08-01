@@ -89,7 +89,7 @@ class Stream_Thread(threading.Thread):
 			if prev != sound:
 				socketio.emit('sound', {'chunk': sound})
 			prev = sound
-			time.sleep(0.05)
+			time.sleep(0.1)
 
 t = Stream_Thread()
 t.start()
