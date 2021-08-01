@@ -28,7 +28,7 @@ class Noise_Detector(threading.Thread):
 
 		self.FORMAT             = pyaudio.paFloat32
 		self.RATE               = 48000 # Hz, so samples (bytes) per second
-		self.CHUNK_SIZE			= 4*1024 # How many bytes to read from mic each time (stream.read())
+		self.CHUNK_SIZE			= 2048 # How many bytes to read from mic each time (stream.read())
 		self.CHUNKS_PER_SEC		= math.floor(self.RATE / self.CHUNK_SIZE) # How many chunks make a second? (16.000 bytes/s, each chunk is 1.024 bytes, so 1s is 15 chunks)
 		self.CHANNELS           = 1
 		self.HISTORY_LENGTH     = 2 # Seconds of audio cache for prepending to records to prevent chopped phrases (history length + observer length = min record length)
@@ -38,6 +38,7 @@ class Noise_Detector(threading.Thread):
 		self.archive            = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'archive')
 		self.current_file       = None
 		self.chunk              = None
+		self.sent_chunk              = None
 		self.record             = [] # Stores audio chunks
 		self.notified           = False # If we already sent a notification
 
@@ -174,7 +175,11 @@ class Noise_Detector(threading.Thread):
 
 		@return bytes
 		"""
-		return self.chunk
+		if self.sent_chunk != self.chunk:
+			self.sent_chunk = self.chunk
+		else:
+			return None
+		return self.sent_chunk 
 
 	def save(self, data):
 		"""
