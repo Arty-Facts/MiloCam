@@ -161,7 +161,7 @@ class Noise_Detector(threading.Thread):
 						self.notify()
 				elif self.recording():
 					# Silence limit was reached, finish recording and save
-					self.save(list(history) + self.record)
+					# self.save(list(history) + self.record)
 					self.stop_recording()
 
 					Util.log(self.name, "Listening...")

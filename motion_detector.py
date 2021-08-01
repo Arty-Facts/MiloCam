@@ -214,7 +214,7 @@ class Motion_Detector(threading.Thread):
 				self.writer.write(self.current_frame)
 			elif self.recording():
 				# Convert
-				self.convert_to_mp4(self.current_file)
+				# self.convert_to_mp4(self.current_file)
 
 				# Reset all
 				self.stop_recording()
