@@ -91,7 +91,7 @@ class Noise_Detector(threading.Thread):
 			res.append(rms)
 
 		# Set threshold to 20% above avergae
-		threshold = (sum(res) / len(res)) * 10.0
+		threshold = (sum(res) / len(res)) * 7.0
 		Util.log(self.name, "Setting threshold to: " + str(threshold))
 
 		return threshold
@@ -144,13 +144,15 @@ class Noise_Detector(threading.Thread):
 		try:
 			while True:
 				# Current chunk of audio data
-				self.chunk = self.stream.read(self.CHUNK_SIZE)
+				try:
+					self.chunk = self.stream.read(self.CHUNK_SIZE)
+				except:
+					continue 
 				history.append(self.chunk)
 
 				# Add noise level of this chunk to the sliding-window
 				rms = self.get_rms(self.chunk)
 				observer.append(rms)
-				print(observer)
 				if self.detected(sum([x > self.threshold for x in observer]) > 0):
 					# There's at least one chunk in the sliding-window above threshold
 					if not self.recording():
