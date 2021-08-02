@@ -177,6 +177,9 @@ class Noise_Detector(threading.Thread):
 
 		@return bytes
 		"""
+		if self.get_rms(self.chunk) < self.threshold:
+			return None
+
 		if self.sent_chunk != self.chunk:
 			self.sent_chunk = self.chunk
 		else:
