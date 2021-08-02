@@ -91,7 +91,7 @@ class Noise_Detector(threading.Thread):
 			res.append(rms)
 
 		# Set threshold to 20% above avergae
-		threshold = (sum(res) / len(res)) * 5.0
+		threshold = (sum(res) / len(res)) * 3.0
 		Util.log(self.name, "Setting threshold to: " + str(threshold))
 
 		return threshold
