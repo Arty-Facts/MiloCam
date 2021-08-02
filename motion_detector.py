@@ -33,6 +33,11 @@ class Motion_Detector(threading.Thread):
 		self.current_file = None
 
 		self.source = cv2.VideoCapture(source) if source is not None else self.init_camera()
+		self.source.set(3, 480)
+		self.source.set(4, 360)
+
+		# Wait half a second for light adjustment
+		time.sleep(0.5)
 
 		self.fps = self.find_fps(self.source)
 		self.height, self.width = self.get_dimensions(self.source)
