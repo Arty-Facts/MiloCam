@@ -33,7 +33,7 @@ class Noise_Detector(threading.Thread):
 		self.CHANNELS           = 1
 		self.HISTORY_LENGTH     = 2 # Seconds of audio cache for prepending to records to prevent chopped phrases (history length + observer length = min record length)
 		self.OBSERVER_LENGTH    = 5	# Time in seconds to be observed for noise
-		self.NOTIFICATION_LIMIT = 1 # Seconds before a notification is sent
+		self.NOTIFICATION_LIMIT = 2 # Seconds before a notification is sent
 
 		self.archive            = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'archive')
 		self.current_file       = None
@@ -91,7 +91,7 @@ class Noise_Detector(threading.Thread):
 			res.append(rms)
 
 		# Set threshold to 20% above avergae
-		threshold = (sum(res) / len(res)) * 10.0
+		threshold = (sum(res) / len(res)) * 8.0
 		Util.log(self.name, "Setting threshold to: " + str(threshold))
 
 		return threshold
